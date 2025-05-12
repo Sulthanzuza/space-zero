@@ -1,12 +1,22 @@
-import { useRef, useState } from "react";
+import { useRef, useState, ReactNode, MouseEvent } from "react";
 
-const SpotlightCard = ({ children, className = "", spotlightColor =rgb(0, 200, 150) }) => {
-  const divRef = useRef(null);
+interface SpotlightCardProps {
+  children: ReactNode;
+  className?: string;
+  spotlightColor?: string;
+}
+
+const SpotlightCard = ({
+  children,
+  className = "",
+  spotlightColor = "rgb(0, 200, 150)", // fixed syntax here
+}: SpotlightCardProps) => {
+  const divRef = useRef<HTMLDivElement | null>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!divRef.current || isFocused) return;
 
     const rect = divRef.current.getBoundingClientRect();
@@ -39,7 +49,7 @@ const SpotlightCard = ({ children, className = "", spotlightColor =rgb(0, 200, 1
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative rounded-4xl border border-neutral-800 bg-neutral-900 overflow-hidden  ${className}`}
+      className={`relative rounded-4xl border border-neutral-800 bg-neutral-900 overflow-hidden ${className}`}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"

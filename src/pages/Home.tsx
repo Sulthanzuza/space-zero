@@ -3,7 +3,8 @@ import { ChevronRight } from 'lucide-react';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 import Orb from '../components/Orb'
-import SpotlightCard from '../components/SpotlightCard';
+import SpotlightCard from '../components/SpotLightCard';
+
 import Background from "../assets/ev.jpeg"
 import checkIcon from "../assets/Care of Tesla.jpeg"
 const Home = () => {
